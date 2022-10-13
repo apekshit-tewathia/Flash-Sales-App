@@ -1,0 +1,9 @@
+<%= form_with model: @user, method: :patch, url: password_url(verification_token: @user.verification_token)  do |form| %>
+  <%= form.label :password, t(:new_password) %>
+  <%= form.password_field :password %>
+
+  <%= form.label :password_confirmation, t(:new_password_confirmation) %>
+  <%= form.password_field :password_confirmation %>
+
+  <button type="submit">Submit</button>
+<% end %>

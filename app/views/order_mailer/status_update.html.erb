@@ -1,0 +1,6 @@
+<h1>Hi, <%= @order.user.name %>
+<h3>Your order status has been updated to: '<%= @order.status %>''
+<h4>Your order transaction status is: '<%= @order_transaction.try(:status) %>'
+<% if @order_transaction.try(:status) == 'refunded' %>
+  <h4>Refunded amount is: $<%= @order_transaction.try(:amount).try(:/, 100) %></h4>
+<% end %>

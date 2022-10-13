@@ -1,0 +1,63 @@
+<% if @order.blank? || @order.line_items.blank? %>
+  <h3 class='order-head'>No orders created yet...</h3>
+<% else %>
+  <h3 class='order-head'>Order Details</h3>
+<% end %>
+
+<div class='order-price-details'>
+  <div class='order-detail-row'>
+    <h4>Total discount price: $<%= to_dollar(@order.price) %></h4>
+    <h4>Total loyality discount price: <%= @order.discount_price == 0 ? 'N.A' : "$#{to_dollar(@order.discount_price)}" %></h4>
+    <h4>Line Items count: <%= @order.line_items.count %></h4>
+    <% if @order.in_cart? && @order.shipping_address_id.present?%>
+      <%= form_with url: checkout_url(id: @order.id), data: { turbo: false } do |form| %>
+        <%= form.hidden_field :order_id, value: @order.id %>
+        <button type='submit'>Checkout</button>
+      <% end %>
+    <% end %>
+  </div>
+  <div class='order-detail-row'>
+    <h4>Order status: <%= @order.status.titleize %></h4>
+  </div>
+  <div class='order-detail-row'>
+    <% if admin_logged_in? %>
+      <%= form_with model: @order, url: admin_order_mark_status_url(order_id: @order.id), method: :patch, class: 'order-status-select' do |form| %>
+        <%= form.label :status, 'Mark status as:' %>
+        <%= form.select :status, Order.statuses.keys.map(&:titleize), selected: @order.status.titleize %>
+        <button type='submit'>submit</button>
+      <% end %>
+    <% end %>
+  </div>
+  <div class='order-detail-row'>
+    <% if @order.in_cart? %>
+      <% if @shipping_address.present? %>
+        <h4>Shipping address details: <%= @shipping_address.to_s %></h4>
+        <%= form_with url: new_address_url, method: :get do |form| %>
+          <%= form.hidden_field :order_id, value: @order.id %>
+          <button type='submit'>Change Shipping address</button>
+        <% end %>
+      <% else %>
+        <%= form_with url: new_address_url, method: :get do |form| %>
+          <%= form.hidden_field :order_id, value: @order.id %>
+          <button type='submit'>Set Shipping address</button>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class='order-detail-row'>
+    <h4>Created on: <%= @order.created_at.to_date %></h4>
+    <% if @order.placed? %>
+      <h4>Placed on: <%= @order.placed_at.to_date %></h4>
+    <% end %>
+    <% unless @order.in_cart? || @order.cancelled? %>
+      <%= form_with model: @order, url: order_cancel_url(order_id: @order.id, status: 'cancelled'), method: :patch do %>
+        <button type='submit'>Cancel Order</button>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<h3 class='order-head'>Order Line Items</h3>
+<% @order.line_items.each do |line_item| %>
+  <%= render partial: 'line_items/line_item', locals: { line_item: line_item, in_cart_css: (@order.in_cart? ? 'in-cart' : '') } %>
+<% end %>

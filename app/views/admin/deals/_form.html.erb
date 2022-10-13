@@ -1,0 +1,28 @@
+<%= form_with model: deal, url: admin_deals_url, method: :post do |form| %>
+  
+  <%= form.label :title %>
+  <%= form.text_field :title, value: deal.title %>
+
+  <%= form.label :description %>
+  <%= form.text_area :description, value: deal.description %>
+
+  <%= form.label :price_in_cents %>
+  <%= form.number_field :price_in_cents, value: deal.price_in_cents %>
+
+  <%= form.label :discount_price_in_cents %>
+  <%= form.number_field :discount_price_in_cents, value: deal.discount_price_in_cents %>
+
+  <%= form.label :quantity %>
+  <%= form.number_field :quantity, value: deal.quantity %>
+
+  <%= form.label :tax_percentage %>
+  <%= form.number_field :tax_percentage, value: deal.tax_percentage %>
+
+  <%= form.label :published_at %>
+  <%= form.date_field :published_at, value: deal.published_at %>
+
+  <%= form.label :images %>
+  <%= form.file_field :images, multiple: true %>
+
+  <button type="submit">Create Deal</button>
+<% end %>

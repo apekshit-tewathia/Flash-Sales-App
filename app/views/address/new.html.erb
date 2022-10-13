@@ -1,0 +1,39 @@
+<% dynamic_css = '' %>
+<% if logged_in_user.addresses.present? %>
+  <h4 class='select-address-form-title'>Select Shipping Address</h4>
+  <%= form_with(model: @address, url: shipping_address_index_url(order_id: @order.id), method: :patch, class: 'address-select-form') do |form| %>
+    <%= form.collection_select :shipping_address_id, logged_in_user.addresses.all, :id, :to_s, { select: logged_in_user_last_used_shipping_address} %>
+    <button type='submit'>Submit</button>
+  <% end %>
+
+  <div class='part'>
+    <hr>
+    <p>OR</p>
+    <hr>
+  </div>
+<% else %>
+  <% dynamic_css = 'only-address-input' %>
+<% end %>
+
+<h4 class='address-form-title <%= dynamic_css %>'>Add a new Shipping Address</h4>
+<%= form_with(model: @address, url: address_index_url(verification_token: logged_in_user.verification_token, order_id: @order.id), method: :post, class: 'address-form') do |form| %>
+  <%= form.label :country %>
+  <%= form.text_field :country %>
+
+  <%= form.label :line1 %>
+  <%= form.text_field :line1 %>
+
+  <%= form.label :line2 %>
+  <%= form.text_field :line2 %>
+
+  <%= form.label :city %>
+  <%= form.text_field :city %>
+
+  <%= form.label :state %>
+  <%= form.text_field :state %>
+
+  <%= form.label :postal_code %>
+  <%= form.text_field :postal_code %>
+
+  <button type='submit'>Submit</button>
+<% end %>

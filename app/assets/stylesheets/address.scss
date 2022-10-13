@@ -1,0 +1,48 @@
+.part {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 3vh;
+  margin-bottom: 1.4vh;
+  hr {
+    width: 18%;
+    margin-top: 4vh;
+  }
+  p {
+    margin-left: 2vh;
+    margin-right: 2vh;
+    color: #5c636a;
+    font-size: 2.4vh;
+  }
+}
+
+form {
+  select {
+    margin-bottom: 1.5vh;
+    border: 1px solid #B9B9B9;
+    height: 3.2vh !important;
+  }
+}
+
+.address-select-form {
+  margin-top: 3vh;
+}
+
+.address-form {
+  margin-top: 3vh;
+  margin-bottom: 4vh;
+}
+
+.select-address-form-title {
+  margin-top: 9vh !important;
+  margin-bottom: 0vh;
+}
+
+.address-form-title {
+  margin-top: 2.5vh;
+  margin-bottom: 0;
+}
+
+.only-address-input {
+  margin-top: 9vh !important;
+}

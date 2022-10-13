@@ -1,0 +1,17 @@
+<div class="deals_container single_deal">
+  <%= render partial: 'deals/deal', locals: { summarize: false, deal: @deal, css_class: 'show_deal' } %>
+</div>
+<h3 class='desc-head'>Description</h3>
+<p id="deal_desc"><%= @deal.description %></p>
+
+<% if @deal.live? %>
+  <% if @deal.quantity.zero? %>
+    <h4>Sold Out</h4>
+  <% else %>
+    <%= form_with model: Order.new, class: 'buy-btn' do |form| %>
+      <%= form.text_field :deal_id, value: @deal.id, type: :hidden %>
+      <%= form.number_field :quantity, value: 1, type: :hidden %>
+      <button type='submit'>Buy</button>
+    <% end %>
+  <% end %>
+<% end %>

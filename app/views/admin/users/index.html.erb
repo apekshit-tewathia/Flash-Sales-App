@@ -1,0 +1,5 @@
+<div class='users-container'>
+  <% @users.each do |user| %>
+    <%=  render partial: 'users/user', locals: { user: user, creation_updation_show: false, show_link: true }%>
+  <% end %>
+</div>

@@ -1,0 +1,57 @@
+.users-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-self: center;
+  margin-top: 10vh !important;
+  .user {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    justify-content: space-around !important;
+    margin: 2vh;
+    padding: 2vh;
+    box-shadow: 0.08vh 0.08vh 2vh 0.08vh #D9D9DA;
+    width: 100%;
+    .user-details {
+      display: flex;
+      flex-direction: column;
+      .user-role {
+        text-decoration: none !important;
+        align-self: start;
+      }
+      .create-update-info {
+        text-decoration: none !important;
+        align-self: start;
+      }
+    }
+    .user-crud {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      a {
+        margin-left: 3.85vh;
+      }
+      form {
+        border: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none;
+        width: auto;
+        button {
+          margin: -10px;
+        }
+      }
+      .delete-user-btn {
+        border: none !important;
+        background-color: white;
+        color: black;
+        width: 16vh;
+        padding: 0;
+        font-size: 2vh;
+        text-decoration: underline;
+        color: var(--bs-link-color);
+      }
+    }
+  }
+}

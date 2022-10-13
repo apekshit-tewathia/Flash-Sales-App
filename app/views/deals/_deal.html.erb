@@ -1,0 +1,47 @@
+<% if css_class %>
+  <div class="deal <%= css_class %> col-md-6">
+<% else %>
+  <div class="deal col-md-6">
+<% end %>
+  <div id='corousal-deal-<%= deal.id %>' class="carousel slide" data-ride="carousel" data-interval="3500">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <%= image_tag rails_blob_path(deal.images.first, disposition: "attachment"), class: "d-block" %>
+      </div>
+      <% deal.images.to_a[1..-1].each do |image| %>
+        <div class="carousel-item">
+          <%= image_tag rails_blob_path(image, disposition: "attachment"), class: "d-block" %>
+        </div>
+      <% end %>
+    </div>
+    <a class="carousel-control-prev" href='#corousal-deal-<%= deal.id %>' role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href='#corousal-deal-<%= deal.id %>' role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+  <div class="deal_detail">
+    <% if admin_logged_in? %>
+      <% deal_link = admin_deal_url(deal) %>
+    <% else %>
+      <% deal_link = deal_url(deal) %>
+    <% end %>
+    <h1><%= link_to(deal.title, deal_link) %></h1>
+    <% if summarize %>
+      <p><%= deal.description.truncate_words(30) %></p>
+    <% end %>
+    
+    <div class="deal_info">
+      <h4 data-ref="deal_quantity_<%= deal.id %>">Quantity: <%= deal.quantity %></h4>
+      <h4>Tax: <%= deal.tax_percentage %>%</h4>
+      <h4>Publish Date: <%=  deal.published_at.to_date%></h4>
+    </div>
+    <div class="price_detail">
+      <p id="price">$<%= to_dollar deal.price_in_cents %></p>
+      <p id="d_price">$<%= to_dollar deal.discount_price_in_cents %></p>
+    </div>
+  </div>
+</div>

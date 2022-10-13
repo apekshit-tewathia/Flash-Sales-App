@@ -1,0 +1,12 @@
+<div class='line-item <%= in_cart_css %>'>
+  <div class='line-item-info'>
+    <p><%= link_to line_item.deal.title, deal_url(line_item.deal) %></p>
+    <p>Tax percentage: <%= line_item.deal.tax_percentage %>%</p>
+    <p>Price: $<%= to_dollar(line_item.deal.price_in_cents) %></p>
+    <p>Discount Price: $<%= to_dollar(line_item.discounted_price) %></p>
+    <p>Loyality Discount Price: <%= line_item.loyality_discounted_price == 0 ? '-' : "$#{to_dollar(line_item.loyality_discounted_price)}"%></p>
+  </div>
+  <% if line_item.order.in_cart? %>
+    <%= button_to 'Remove', line_item_url(line_item), method: :delete%>
+  <% end %>
+</div>

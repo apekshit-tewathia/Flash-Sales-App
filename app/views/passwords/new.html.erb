@@ -1,0 +1,6 @@
+<%= form_with model: @user, url: verify_email_for_forgot_password_url, method: :get do |form| %>
+  <%= form.label :email, t(:enter_registered_email) %>
+  <%= form.email_field :email%>
+
+  <button type="submit">Submit</button>
+<% end %>

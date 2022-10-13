@@ -1,0 +1,22 @@
+<%= form_with model: user, url: submission_url, method: request_method do |form| %>
+  <h2><%= form_title %></h2>
+  <%= form.label :name, 'Name ' %>
+  <%= form.text_field :name %>
+
+  <%= form.label :email %>
+  <%= form.email_field :email %>
+
+  <%= form.label :password %>
+  <%= form.password_field :password %>
+
+  <%= form.label :password_confirmation %>
+  <%= form.password_field :password_confirmation %>
+
+  <button type="submit"><%= form_title %></button>
+
+  <% if form_title == 'Sign up' %>
+    <p>Already registered?
+      <%= link_to 'Login', login_url %>
+    </p>
+  <% end %>
+<% end %>

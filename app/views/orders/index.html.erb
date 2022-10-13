@@ -1,0 +1,8 @@
+<% if @orders.empty? %>
+  <h3 class='order-head'>No orders created yet...</h3>
+<% else %>
+  <h3 class='order-head'><%= "Your orders" %></h3>
+  <% @orders.reverse.each do |order| %>
+    <%= render partial: 'orders/order', locals: { order: order }%>
+  <% end %>
+<% end %>

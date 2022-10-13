@@ -1,0 +1,4 @@
+<h1>Congratulations <%= @user.name %> on successfully signing in on Flash Sales</h1>
+<h3>Please click on the below link to verify your email</h3>
+
+<%= link_to t(:verify_your_email), verify_user_url(verification_token: @user.verification_token)%>

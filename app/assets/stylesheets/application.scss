@@ -1,0 +1,103 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 4vh;
+  nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: #4D4D4D;
+    padding-bottom: 0;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    h4 {
+      font-family: 'Kaushan Script', cursive;
+      margin-left: 2vh;
+      margin-top: 1vh;
+      font-size: 3vh;
+      margin-bottom: 1vh;
+      text-decoration: none !important;
+      a {
+        color: white;
+        text-decoration: none !important;
+      }
+      a:hover {
+        color: white
+      }
+    }
+    div {
+      display: flex;
+      flex-direction: row;
+      margin-top: 1vh;
+      a {
+        margin-right: 2.5vh;
+        text-decoration: none;
+        color: white;
+      }
+      a:hover {
+        color: black !important;
+      }
+      .dropdown {
+        margin-top: -0.2vh;
+        .dropdown-toggle {
+          padding: 0.5vh 0.8vh 0.5vh 1.5vh;
+          margin-right: 2vh;
+          margin-bottom: 1vh;
+        }
+      }
+      .nav-link {
+        color: white !important;
+      }
+      .nav-link:hover {
+        color: white !important;
+      }
+    }
+  }
+  .alert {
+    color: #FA786E;
+    margin: 0;
+    margin-top: 7vh !important;
+    align-self: center;
+    padding-bottom: 0;
+    font-size: 2vh;
+  }
+  .email-confirmation {
+    margin-top: 7vh;
+    align-self: center;
+  }
+  .order-head {
+    margin-top: 7vh;
+    align-self: center;
+  }
+  .dropdown-toggle {
+    background-color: #5c636a;
+    border-color: #5c636a;
+  }
+  .order-pl-ack {
+    margin-top: 3vh;
+  }
+  .go-live-deal {
+    align-self: center;
+    margin-top: 2vh;
+  }
+}

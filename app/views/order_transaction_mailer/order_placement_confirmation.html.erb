@@ -1,0 +1,10 @@
+<h1>Congratulations <%= @order_transaction.order.user.name %> for successfully placing order at Flash Sales</h3>
+<h2>Your Order Details</h4>
+
+<h3>Order Net Total: <%= @order_transaction.order.discount_price || @order_transaction.order.price %>, Placed on: <%= @order_transaction.order.placed_at %></h3>
+<%= @order_transaction.order.line_items.each do |line_item| %>
+  <li>
+    <h4><%= line_item.deal.title %></h4>
+    <p>Price: <%= line_item.loyality_discounted_price || line_item.discounted_price %></p>
+  </li>
+<% end %>
